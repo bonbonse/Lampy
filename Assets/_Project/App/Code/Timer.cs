@@ -7,6 +7,7 @@ public class Timer : MonoBehaviour
 {
     public float curTime = 32350;
     public string curTimeStr = "";
+    public Notification notification;
     void Start()
     {
         StartCoroutine(MainTimer());
@@ -27,6 +28,7 @@ public class Timer : MonoBehaviour
         {
             case "09:00":
                 Debug.Log("Начало рабочего дня");
+                
                 break;
             case "17:00":
                 Debug.Log("Конец");
