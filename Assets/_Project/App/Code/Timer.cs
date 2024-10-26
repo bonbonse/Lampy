@@ -5,12 +5,17 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    public float curTime = 32350;
     public string curTimeStr = "";
     public Notification notification;
+    
+    private int curTime = 32350;
     void Start()
     {
         StartCoroutine(MainTimer());
+        if (notification == null)
+        {
+            notification = FindObjectOfType<Notification>();
+        }
     }
 
     IEnumerator MainTimer()
@@ -28,10 +33,11 @@ public class Timer : MonoBehaviour
         {
             case "09:00":
                 Debug.Log("Начало рабочего дня");
-                
+                notification.SendNotification("Начало рабочего дня");
                 break;
             case "17:00":
                 Debug.Log("Конец");
+                notification.SendNotification("Конец рабочего дня");
                 break;
 
         }
