@@ -8,7 +8,9 @@ public class Player : MonoBehaviour
     Vector2 moveDir = Vector2.zero;
     [SerializeField]
     float speed = 5.0f;
-
+    bool canBePicked = false;
+    GameObject pickedObj = null;
+    GameObject objInHand = null;
 
     private Vector2 posRb;
 
@@ -32,14 +34,55 @@ public class Player : MonoBehaviour
     {
         moveDir.x = Input.GetAxis("Horizontal");
         moveDir.y = Input.GetAxis("Vertical");
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            // TODO: тернарный оператор
+            if (objInHand != null)
+            {
+                Drop();
+            }
+            else
+            {
+                Take();
+            }
+        }
     }
     void LogicUpdate()
     {
         posRb.x = transform.position.x;
         posRb.y = transform.position.y;
     }
+
+
     void Move()
     {
         rb.MovePosition(moveDir * speed * Time.deltaTime + posRb);
+    }
+    void Take()
+    {
+        if (canBePicked)
+        {
+            objInHand = pickedObj;
+            objInHand.GetComponent<Rigidbody2D>().isKinematic = true;
+            objInHand.transform.SetParent(rb.transform);
+        }
+    }
+    void Drop()
+    {
+        objInHand.transform.SetParent(null);
+        objInHand.GetComponent<Rigidbody2D>().isKinematic = false;
+        objInHand = null;
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        canBePicked = true;
+        pickedObj = collision.gameObject;
+        Debug.Log("Stay " + canBePicked);
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        canBePicked = false;
+        pickedObj = null;
+        Debug.Log("Exit " + canBePicked);
     }
 }
