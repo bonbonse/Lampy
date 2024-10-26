@@ -20,6 +20,14 @@ namespace Player
             { 
                 player.moveDir.x = 0; 
             }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (player.chairSelected != null)
+                {
+                    player.Sit();
+                    behaviourHandler.SetBehaviourWorking();
+                }
+            }
             //if (Input.GetKeyDown(KeyCode.E))
             //{
             //    // TODO: тернарный оператор

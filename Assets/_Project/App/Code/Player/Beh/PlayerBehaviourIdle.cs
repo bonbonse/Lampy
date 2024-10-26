@@ -17,6 +17,15 @@ namespace Player
             if ((player.moveDir.x = Input.GetAxis("Horizontal")) != 0) { }
             else if ((player.moveDir.y = Input.GetAxis("Vertical")) != 0) { }
 
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (player.chairSelected != null)
+                {
+                    Debug.Log(player.chairSelected);
+                    behaviourHandler.SetBehaviourWorking();
+                    player.Sit();
+                }
+            }
             //if (Input.GetKeyDown(KeyCode.E))
             //{
             //    // TODO: тернарный оператор
