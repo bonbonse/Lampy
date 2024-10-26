@@ -6,6 +6,8 @@ namespace Player
 {
     public class Player : MonoBehaviour
     {
+        public App app;
+
         public Rigidbody2D rb;
         public Vector2 moveDir = Vector2.zero;
         [SerializeField]
@@ -13,6 +15,16 @@ namespace Player
         public bool canBePicked = false;
         public GameObject pickedObj = null;
         public GameObject objInHand = null;
+        public GameObject chairSelected = null;
+        public GameObject chair = null;
+
+        public float tiredSpeedInSeconds = 0.5f;
+        public float tiredValueProgress = -1f;
+        public float workSpeedInSeconds = 2f;
+        public float workValueProgress = 1f;
+
+        public Fatique fatique;
+        public JobDone jobDone;
 
         // -1 - idle, 0 - up, 1 - down, 2 - side
         public Animator animator;
@@ -52,6 +64,15 @@ namespace Player
             objInHand.GetComponent<Rigidbody2D>().isKinematic = false;
             objInHand = null;
         }
+        public void Sit()
+        {
+            if (chairSelected != null)
+            {
+                chair = chairSelected;
+                chairSelected.gameObject.SetActive(false);
+                Debug.Log("Sit " + chair);
+            }
+        }
         private void OnTriggerStay2D(Collider2D collision)
         {
             if (collision.tag != "Grid")
@@ -59,14 +80,16 @@ namespace Player
                 canBePicked = true;
                 pickedObj = collision.gameObject;
             }
+            if (collision.tag == "Chair")
+            {
+                chairSelected = collision.gameObject;
+            }
         }
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (collision.tag != "Grid")
-            {
-                canBePicked = false;
-                pickedObj = null;
-            }
+            canBePicked = false;
+            pickedObj = null;
+            chairSelected = null;
         }
     }
 }
