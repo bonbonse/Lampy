@@ -12,20 +12,26 @@ namespace Player
         }
         public override void HandleUpdate()
         {
-            player.moveDir.x = Input.GetAxis("Horizontal");
-            player.moveDir.y = Input.GetAxis("Vertical");
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                // TODO: тернарный оператор
-                if (player.objInHand != null)
-                {
-                    player.Drop();
-                }
-                else
-                {
-                    player.Take();
-                }
+            if ((player.moveDir.x = Input.GetAxis("Horizontal")) != 0) 
+            { 
+                player.moveDir.y = 0;
             }
+            if ((player.moveDir.y = Input.GetAxis("Vertical")) != 0) 
+            { 
+                player.moveDir.x = 0; 
+            }
+            //if (Input.GetKeyDown(KeyCode.E))
+            //{
+            //    // TODO: тернарный оператор
+            //    if (player.objInHand != null)
+            //    {
+            //        player.Drop();
+            //    }
+            //    else
+            //    {
+            //        player.Take();
+            //    }
+            //}
         }
         public override void LogicUpdate()
         {
@@ -33,7 +39,10 @@ namespace Player
             {
                 behaviourHandler.SetBehaviourIdle();
             }
-            // TODO: поворот персонажа
+            else
+            {
+                CheckMoveDirectionAndPlayAnim();
+            }
         }
         public override void PhysicalUpdate()
         {
@@ -42,6 +51,35 @@ namespace Player
         public override void Exit()
         {
 
+        }
+
+        private void CheckMoveDirectionAndPlayAnim()
+        {
+            // -1 - idle, 0 - up, 1 - down, 2 - side   -- TODO:  Enum
+            if (player.moveDir.x != 0)
+            {
+                if (player.moveDir.x < 0)
+                {
+                    player.transform.localScale = new Vector3(1, 1, 1);
+                }
+                else
+                {
+                    player.transform.localScale = new Vector3(-1, 1, 1);
+                }
+                player.animator.Play("MoveSide");
+
+            }
+            else
+            {
+                if (player.moveDir.y > 0)
+                {
+                    player.animator.Play("MoveUp");
+                }
+                else
+                {
+                    player.animator.Play("MoveDown");
+                }
+            }
         }
     }
 }

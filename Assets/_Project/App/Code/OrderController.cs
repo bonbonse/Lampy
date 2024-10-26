@@ -12,16 +12,19 @@ public class OrderController : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision != null) {
-            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
-            if (spriteRenderer.sortingOrder == spriteRenderer.sortingOrder)
+            if (collision.tag != "Grid")
             {
-                if (transform.position.y > collision.transform.position.y)
-                    collision.GetComponent<SpriteRenderer>().sortingLayerName = "3";
-                else
-                    collision.GetComponent<SpriteRenderer>().sortingLayerName = "1";
-                Debug.Log(collision.GetComponent<SpriteRenderer>().sortingLayerName + collision.name);
+                SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+                if (spriteRenderer == null) { return; }
+                if (spriteRenderer.sortingOrder == spriteRenderer.sortingOrder)
+                {
+                    if (transform.position.y > collision.transform.position.y)
+                        collision.GetComponent<SpriteRenderer>().sortingLayerName = "3";
+                    else
+                        collision.GetComponent<SpriteRenderer>().sortingLayerName = "1";
+                    Debug.Log(collision.GetComponent<SpriteRenderer>().sortingLayerName + collision.name);
+                }
             }
-                
         }
     }
 }
