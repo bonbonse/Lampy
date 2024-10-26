@@ -14,11 +14,21 @@ namespace Player
         public GameObject pickedObj = null;
         public GameObject objInHand = null;
 
+        // -1 - idle, 0 - up, 1 - down, 2 - side
+        public Animator animator;
+
         private Vector2 posRb;
 
         void Start()
         {
-            rb = GetComponent<Rigidbody2D>();
+            if (rb == null)
+            {
+                rb = GetComponent<Rigidbody2D>();
+            }
+            if (animator == null)
+            {
+                animator = GetComponent<Animator>();
+            }
             posRb = new Vector2(transform.position.x, transform.position.y);
         }
 
@@ -44,22 +54,18 @@ namespace Player
         }
         private void OnTriggerStay2D(Collider2D collision)
         {
-            canBePicked = true;
-            pickedObj = collision.gameObject;
-            Debug.Log("Stay " + canBePicked);
+            if (collision.tag != "Grid")
+            {
+                canBePicked = true;
+                pickedObj = collision.gameObject;
+            }
         }
         private void OnTriggerExit2D(Collider2D collision)
         {
-            canBePicked = false;
-            pickedObj = null;
-            Debug.Log("Exit " + canBePicked);
-        }
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.tag == "WorkingPlace")
+            if (collision.tag != "Grid")
             {
-                // запускаем анимацию работы
-                //
+                canBePicked = false;
+                pickedObj = null;
             }
         }
     }
