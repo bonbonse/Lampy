@@ -32,11 +32,12 @@ public class Timer : MonoBehaviour
         switch (curTimeStr)
         {
             case "09:00":
-                Debug.Log("Начало рабочего дня");
                 notification.SendNotification("Начало рабочего дня");
                 break;
+            case "14:00":
+                notification.SendNotification("Обед");
+                break;
             case "17:00":
-                Debug.Log("Конец");
                 notification.SendNotification("Конец рабочего дня");
                 break;
 
