@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -144160111
+  m_SortingLayer: 2
   m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: 635bbb4edc7f13a40908e383f477d065, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -158,8 +158,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -144160111
+  m_SortingLayer: 2
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 8450b2b6077009e49928d109201fa41b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -252,6 +252,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6172255657892537697}
     m_Modifications:
+    - target: {fileID: 1605511278143507775, guid: b0a8272cb1e08454d8d283bf5b93ff96, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605511278143507775, guid: b0a8272cb1e08454d8d283bf5b93ff96, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -144160111
+      objectReference: {fileID: 0}
     - target: {fileID: 2362130916705084093, guid: b0a8272cb1e08454d8d283bf5b93ff96, type: 3}
       propertyPath: m_Name
       value: Voda

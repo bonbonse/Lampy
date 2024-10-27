@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5775154939989750613}
   - component: {fileID: 6505976525544047514}
   - component: {fileID: 8182286231689424966}
-  - component: {fileID: 6552185515462606046}
   m_Layer: 0
   m_Name: chairsboku (5)
   m_TagString: Chair
@@ -159,15 +158,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6552185515462606046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 820430480434047738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a981459d834fcc49b7b710e541c321b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
