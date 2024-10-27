@@ -31,7 +31,7 @@ namespace Player
 
         private Vector2 posRb;
 
-        void Start()
+        void Awake()
         {
             if (rb == null)
             {

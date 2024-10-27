@@ -18,11 +18,10 @@ public class OrderController : MonoBehaviour
                 if (spriteRenderer == null) { return; }
                 if (spriteRenderer.sortingOrder == spriteRenderer.sortingOrder)
                 {
-                    if (transform.position.y > collision.transform.position.y)
-                        collision.GetComponent<SpriteRenderer>().sortingLayerName = "3";
+                    if (transform.position.y < collision.transform.position.y)
+                        spriteRendererPlayer.sortingLayerName = "3";
                     else
-                        collision.GetComponent<SpriteRenderer>().sortingLayerName = "1";
-                    Debug.Log(collision.GetComponent<SpriteRenderer>().sortingLayerName + collision.name);
+                        spriteRendererPlayer.sortingLayerName = "1";
                 }
             }
         }

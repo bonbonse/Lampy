@@ -10,4 +10,5 @@ public class App : MonoBehaviour
     public JobDone jobDone;
     public GameObject task;
     public Player.Player player;
+    public Boss.Boss boss;
 }
