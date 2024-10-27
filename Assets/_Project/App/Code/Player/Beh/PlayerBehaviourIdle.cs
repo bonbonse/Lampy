@@ -9,7 +9,6 @@ namespace Player
     {
         public override void Enter()
         {
-            Debug.Log("Idle Enter");
             player.animator.Play("Idle");
         }
         public override void HandleUpdate()

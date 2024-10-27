@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace Boss 
 {
     public class BossBehaviourAgressive : BossBehaviour

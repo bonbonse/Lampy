@@ -9,24 +9,29 @@ namespace Boss
     {
         public override void Enter()
         {
-            Debug.Log("Idle Enter");
-            boss.animator.Play("Idle");
+            Debug.Log("Idle");
+            boss.StartCoroutine(WaitAndWalking());
+            // boss.animator.Play("Idle");
         }
         public override void LogicUpdate()
         {
-            if (boss.moveDir.x != 0 || boss.moveDir.y != 0)
-            {
-                behaviourHandler.SetBehaviourAgressive();
-            }
+            //if (boss.moveDir.x != 0 || boss.moveDir.y != 0)
+            //{
+            //    behaviourHandler.SetBehaviourAgressive();
+            //}
         }
         public override void PhysicalUpdate()
         {
-            base.PhysicalUpdate();
+            
         }
         public override void Exit()
         {
-
+            boss.isIdle = false;
+        }
+        IEnumerator WaitAndWalking()
+        {
+            yield return new WaitForSeconds(5);
+            behaviourHandler.SetBehaviourWalking();
         }
     }
-
 }

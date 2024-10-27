@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Boss 
 {
-    public class BossBehaviour : MonoBehaviour
+    public class BossBehaviour
     {
         public Boss boss;
         public BossBehaviourHandler behaviourHandler;

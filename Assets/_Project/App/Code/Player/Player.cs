@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Player
 {
@@ -90,6 +91,19 @@ namespace Player
             canBePicked = false;
             pickedObj = null;
             chairSelected = null;
+        }
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.tag == "Bullet")
+            {
+                app.notification.SendNotification("Вам неповезло и вы попали под сокращение:(");
+                StartCoroutine(ReadAndEnd());
+            }
+        }
+        IEnumerator ReadAndEnd()
+        {
+            yield return new WaitForSeconds(7);
+            SceneManager.LoadScene("Menu");
         }
     }
 }

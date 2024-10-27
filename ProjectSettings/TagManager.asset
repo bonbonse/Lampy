@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Grid
   - Chair
+  - Point
+  - Bullet
   layers:
   - Default
   - TransparentFX

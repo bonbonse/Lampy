@@ -28,6 +28,7 @@ namespace Boss
 
             behavioursMap[typeof(BossBehaviourAgressive)] = new BossBehaviourAgressive();
             behavioursMap[typeof(BossBehaviourIdle)] = new BossBehaviourIdle();
+            behavioursMap[typeof(BossBehaviourWalking)] = new BossBehaviourWalking();
         }
         private void Update()
         {
@@ -51,7 +52,7 @@ namespace Boss
         }
         private void SetBehaviourByDefault()
         {
-            var behaviourByDefault = GetBehaviour<BossBehaviourIdle>();
+            var behaviourByDefault = GetBehaviour<BossBehaviourWalking>();
             SetBehaviour(behaviourByDefault);
         }
 
@@ -69,6 +70,11 @@ namespace Boss
         public void SetBehaviourAgressive()
         {
             var behaviour = GetBehaviour<BossBehaviourAgressive>();
+            SetBehaviour(behaviour);
+        }
+        public void SetBehaviourWalking()
+        {
+            var behaviour = GetBehaviour<BossBehaviourWalking>();
             SetBehaviour(behaviour);
         }
     }

@@ -8,7 +8,6 @@ namespace Player
     {
         public override void Enter()
         {
-            Debug.Log("Walk Enter");
         }
         public override void HandleUpdate()
         {
