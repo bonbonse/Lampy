@@ -19,10 +19,12 @@ public class Fatique : Counter
     public override void AddProgress(float value)
     {
         base.AddProgress(value);
+        if (curValue > 100)
+            curValue = 100;
         fatiqueText.text = curValue.ToString();
         if (curValue <= maxValue)
         {
-            notification.SendNotification(
+            Notification.SendNotification(
                 "Переутомление! У вас отказывает сердце:(" +
                 "Бос недоволен вашей слабостью. На этом ваш рабочий день закончен!"
                 );

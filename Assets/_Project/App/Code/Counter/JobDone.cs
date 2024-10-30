@@ -21,6 +21,7 @@ public class JobDone : Counter
                 "Вы выполнили задачу! Бос доволен!\n " +
                 "Вам поручается сделать новую задачу, успейте сделать до конца рабочего дня!"
                 );
+            curValue = 0;
 
         }
         jobDoneText.text = curValue.ToString();

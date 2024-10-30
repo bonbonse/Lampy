@@ -6,8 +6,10 @@ namespace Player
 {
     public class PlayerBehaviourWalking : PlayerBehaviour
     {
+        private SpriteRenderer spriteRenderer;
         public override void Enter()
         {
+            spriteRenderer = player.GetComponent<SpriteRenderer>();
         }
         public override void HandleUpdate()
         {
@@ -57,7 +59,7 @@ namespace Player
         }
         public override void Exit()
         {
-
+            spriteRenderer.flipX = false;
         }
 
         private void CheckMoveDirectionAndPlayAnim()
@@ -67,11 +69,11 @@ namespace Player
             {
                 if (player.moveDir.x < 0)
                 {
-                    player.transform.localScale = new Vector3(1, 1, 1);
+                    spriteRenderer.flipX = false;
                 }
                 else
                 {
-                    player.transform.localScale = new Vector3(-1, 1, 1);
+                    spriteRenderer.flipX = true;
                 }
                 player.animator.Play("MoveSide");
 

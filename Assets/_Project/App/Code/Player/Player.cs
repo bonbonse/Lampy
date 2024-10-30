@@ -17,6 +17,7 @@ namespace Player
         public GameObject pickedObj = null;
         public GameObject objInHand = null;
         public GameObject chairSelected = null;
+        public GameObject coolSelected = null;
         public GameObject chair = null;
 
         public float tiredSpeedInSeconds = 0.5f;
@@ -32,6 +33,10 @@ namespace Player
 
         private Vector2 posRb;
 
+        public AudioSource audioSource;
+        public AudioClip[] musicClips; // Массив аудиофайлов
+
+
         void Awake()
         {
             if (rb == null)
@@ -42,7 +47,19 @@ namespace Player
             {
                 animator = GetComponent<Animator>();
             }
+            if (audioSource == null)
+            {
+                audioSource = GetComponent<AudioSource>();
+            }
             posRb = new Vector2(transform.position.x, transform.position.y);
+        }
+        public void PlayMusic(int clipIndex)
+        {
+            if (clipIndex < musicClips.Length)
+            {
+                audioSource.clip = musicClips[clipIndex];
+                audioSource.Play();
+            }
         }
 
         public void Move()
@@ -85,25 +102,37 @@ namespace Player
             {
                 chairSelected = collision.gameObject;
             }
+            if (collision.tag == "Cool")
+            {
+                coolSelected = collision.gameObject;
+            }
         }
         private void OnTriggerExit2D(Collider2D collision)
         {
-            canBePicked = false;
-            pickedObj = null;
-            chairSelected = null;
+            if (collision.tag == "Cool")
+            {
+                coolSelected = null;
+            }
+            if (collision.tag == "Chair")
+            {
+                canBePicked = false;
+                pickedObj = null;
+                chairSelected = null;
+            }
+            
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.tag == "Bullet")
             {
-                app.notification.SendNotification("Вам неповезло и вы попали под сокращение:(");
-                StartCoroutine(ReadAndEnd());
+                Notification.SendNotification(
+                    "Вам неповезло и вы попали под сокращение :(" +
+                    "\nОтдохните как следует" +
+                    "и снова устройтесь на работу",
+                    "Выйти",
+                    true
+                    );
             }
-        }
-        IEnumerator ReadAndEnd()
-        {
-            yield return new WaitForSeconds(7);
-            SceneManager.LoadScene("Menu");
         }
     }
 }

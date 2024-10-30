@@ -21,7 +21,11 @@ namespace Boss
         public GameObject nextPoint;
         public bool isIdle = false;
 
+        public AudioClip[] musicClips; // Массив аудиофайлов
+        private AudioSource audioSource;
+
         private Vector2 posRb;
+        public float timeIdle = 45;
 
         public GameObject bullet;
         void Awake()
@@ -38,6 +42,18 @@ namespace Boss
             if (nextPoint == null)
             {
                 nextPoint = curPoint.GetComponent<MovePoint>().GetRandomPointGameobject(isForwardDir);
+            }
+            if (audioSource == null)
+            {
+                audioSource = GetComponent<AudioSource>();
+            }
+        }
+        public void PlayMusic(int clipIndex)
+        {
+            if (clipIndex < musicClips.Length)
+            {
+                audioSource.clip = musicClips[clipIndex];
+                audioSource.Play();
             }
         }
 
@@ -66,7 +82,6 @@ namespace Boss
         }
         public void Shoot()
         {
-            Debug.Log("Shoooot");
             for (int i = 0; i < 10; i++)
             {
                 float angle = 36f * i;

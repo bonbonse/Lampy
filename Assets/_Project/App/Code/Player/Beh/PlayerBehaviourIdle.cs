@@ -20,11 +20,17 @@ namespace Player
             {
                 if (player.chairSelected != null)
                 {
-                    Debug.Log(player.chairSelected);
                     behaviourHandler.SetBehaviourWorking();
                     player.Sit();
                 }
+                if (player.coolSelected != null)
+                {
+                    player.app.fatique.AddProgress(2);
+                    player.app.boss.isIdle = false;
+                    player.PlayMusic(0);
+                }
             }
+                
             //if (Input.GetKeyDown(KeyCode.E))
             //{
             //    // TODO: тернарный оператор

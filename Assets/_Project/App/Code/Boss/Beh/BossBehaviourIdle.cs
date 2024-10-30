@@ -9,16 +9,17 @@ namespace Boss
     {
         public override void Enter()
         {
-            Debug.Log("Idle");
+            Debug.Log("Enter Idle");
+            boss.PlayMusic(0);
             boss.StartCoroutine(WaitAndWalking());
             // boss.animator.Play("Idle");
         }
         public override void LogicUpdate()
         {
-            //if (boss.moveDir.x != 0 || boss.moveDir.y != 0)
-            //{
-            //    behaviourHandler.SetBehaviourAgressive();
-            //}
+            if (boss.isIdle == false)
+            {
+                behaviourHandler.SetBehaviourWalking();
+            }
         }
         public override void PhysicalUpdate()
         {
@@ -27,10 +28,14 @@ namespace Boss
         public override void Exit()
         {
             boss.isIdle = false;
+            Debug.Log("exit idle");
+
         }
         IEnumerator WaitAndWalking()
         {
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(boss.timeIdle);
+            Debug.Log("Cor idle");
+
             behaviourHandler.SetBehaviourWalking();
         }
     }

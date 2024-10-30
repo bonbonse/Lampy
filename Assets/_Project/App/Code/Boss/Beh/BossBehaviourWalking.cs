@@ -8,7 +8,7 @@ namespace Boss
     {
         public override void Enter()
         {
-            Debug.Log("enter waling");
+            boss.PlayMusic(1);
         }
         public override void LogicUpdate()
         {
