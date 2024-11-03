@@ -125,6 +125,7 @@ namespace Player
         {
             if (collision.tag == "Bullet")
             {
+                App.GameOver();
                 Notification.SendNotification(
                     "Вам неповезло и вы попали под сокращение :(" +
                     "\nОтдохните как следует" +

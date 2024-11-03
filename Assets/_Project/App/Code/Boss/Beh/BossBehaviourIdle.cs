@@ -28,14 +28,11 @@ namespace Boss
         public override void Exit()
         {
             boss.isIdle = false;
-            Debug.Log("exit idle");
 
         }
         IEnumerator WaitAndWalking()
         {
             yield return new WaitForSeconds(boss.timeIdle);
-            Debug.Log("Cor idle");
-
             behaviourHandler.SetBehaviourWalking();
         }
     }

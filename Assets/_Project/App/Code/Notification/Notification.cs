@@ -27,11 +27,6 @@ public static class Notification
     public static void SendNotification(string message, string buttonText = "Ок", bool isEnd = false, Sprite image = null)
     {
         _window.SetActive(true);
-        if (isEnd) // TODO: спрятать в App - isEnd в отдельный метод
-        {
-            App.isEnd = true;
-            Time.timeScale = 0;
-        }
         if (message.Length > strLenght)
         {
             SplitMessageOnStr(message);

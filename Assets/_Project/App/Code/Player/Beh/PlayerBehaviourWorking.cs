@@ -1,3 +1,4 @@
+using Quest;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,8 @@ namespace Player
             player.StartCoroutine(Tiring());
             player.StartCoroutine(Working());
             player.app.jobDone.TaskOn();
+
+            QuestManager.CompleteQuest("Первый квест");
         }
         public override void HandleUpdate()
         {
@@ -35,23 +38,25 @@ namespace Player
         public override void Exit()
         {
             _isGo = false;
+            // останавливает все корутины плейра! следует быть осторожнее
+            player.StopAllCoroutines();
             player.app.jobDone.TaskOff();
         }
         IEnumerator Tiring()
         {
             yield return new WaitForSeconds(player.tiredSpeedInSeconds);
-            player.app.fatique.AddProgress(player.tiredValueProgress);
             if (_isGo)
             {
+                player.app.fatique.AddProgress(player.tiredValueProgress);
                 player.StartCoroutine(Tiring());
             }
         }
         IEnumerator Working()
         {
             yield return new WaitForSeconds(player.workSpeedInSeconds);
-            player.app.jobDone.AddProgress(player.workValueProgress);
             if (_isGo)
             {
+                player.app.jobDone.AddProgress(player.workValueProgress);
                 player.StartCoroutine(Working());
             }
         }

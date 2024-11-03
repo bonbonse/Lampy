@@ -1,3 +1,4 @@
+using Quest;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,6 +36,7 @@ public class Timer : MonoBehaviour
                     "Надеюсь он не забыл, что у вас завтра отпуск. Проект придётся сделать сегодня." +
                     "WASD - управление, E - взаимодействие с некоторыми предметами." +
                     "Впрочем, вы давно на этой работе и сами всё знаете... Не перетруждайтесь!");
+                QuestManager.AddQuest("Первый квест", "Пройдите до стула и сядьте работать");
                 break;
             case "14:00":
                 Notification.SendNotification("Обед. На обеде босс более добрый (возможно)");
