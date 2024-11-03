@@ -17,7 +17,7 @@ public class JobDone : Counter
         base.AddProgress(value);
         if (curValue >= maxValue)
         {
-            notification.SendMessage(
+            Notification.SendNotification(
                 "Вы выполнили задачу! Бос доволен!\n " +
                 "Вам поручается сделать новую задачу, успейте сделать до конца рабочего дня!"
                 );
