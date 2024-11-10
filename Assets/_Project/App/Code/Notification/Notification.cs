@@ -14,7 +14,6 @@ public static class Notification
     private static TMP_Text _message;
     private static Button _button;
     private static TMP_Text _buttonText;
-    private static bool isReadMessage = false;
 
     public static void Init(GameObject window, TMP_Text message, GameObject button)
     {

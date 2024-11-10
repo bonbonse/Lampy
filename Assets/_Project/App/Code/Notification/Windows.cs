@@ -8,9 +8,14 @@ public class Windows : MonoBehaviour
     public GameObject notification;
     public TMP_Text notificationText;
     public GameObject notificationButton;
+    public TMP_Text canClickE;
 
-    private void Start()
+    public void ShowClickE()
     {
-        
+        canClickE.gameObject.SetActive(true);
+    }
+    public void UnShowClickE()
+    {
+        canClickE.gameObject.SetActive(false);
     }
 }

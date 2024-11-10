@@ -9,6 +9,8 @@ TagManager:
   - Point
   - Bullet
   - Cool
+  - Human
+  - Interaction
   layers:
   - Default
   - TransparentFX

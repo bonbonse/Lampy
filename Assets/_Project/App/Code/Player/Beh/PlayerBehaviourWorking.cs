@@ -1,6 +1,5 @@
 using Quest;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Player
@@ -11,7 +10,13 @@ namespace Player
         public override void Enter()
         {
             _isGo = true;
+            // если стул повернут вправо
+            if (player.chair != null && player.chair.gameObject.GetComponent<SpriteRenderer>().flipX)
+            {
+                player.GetComponent<SpriteRenderer>().flipX = true;
+            }
             player.animator.Play("Working");
+            
             player.StartCoroutine(Tiring());
             player.StartCoroutine(Working());
             player.app.jobDone.TaskOn();

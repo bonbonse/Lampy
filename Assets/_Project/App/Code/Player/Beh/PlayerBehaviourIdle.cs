@@ -20,30 +20,28 @@ namespace Player
             {
                 if (player.chairSelected != null)
                 {
-                    behaviourHandler.SetBehaviourWorking();
                     player.Sit();
+                    behaviourHandler.SetBehaviourWorking();
                 }
-                if (player.coolSelected != null)
+                else if (player.coolSelected != null)
                 {
                     player.app.fatique.AddProgress(2);
                     player.app.boss.isIdle = false;
                     player.PlayMusic(0);
                 }
+                else if (player.interactionSelected != null)
+                {
+                    Interaction interaction = player.interactionSelected.GetComponent<Interaction>();
+                    if (interaction != null)
+                    {
+                        interaction.Interact();
+                    }
+                    else
+                    {
+                        Debug.LogWarning("У объекта " + interaction.name + " нету Interaction скрипта!");
+                    }
+                }
             }
-                
-            //if (Input.GetKeyDown(KeyCode.E))
-            //{
-            //    // TODO: тернарный оператор
-            //    if (player.objInHand != null)
-            //    {
-            //        player.Drop();
-            //    }
-            //    else
-            //    {
-            //        player.Take();
-            //    }
-            //}
-
         }
         public override void LogicUpdate()
         {

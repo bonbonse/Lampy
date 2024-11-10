@@ -18,7 +18,10 @@ namespace Player
         public GameObject objInHand = null;
         public GameObject chairSelected = null;
         public GameObject coolSelected = null;
+        public GameObject humanSelected = null;
         public GameObject chair = null;
+        public GameObject interactionSelected = null;
+        public static bool canClickE = false;
 
         public float tiredSpeedInSeconds = 0.5f;
         public float tiredValueProgress = -1f;
@@ -53,6 +56,7 @@ namespace Player
             }
             posRb = new Vector2(transform.position.x, transform.position.y);
         }
+        
         public void PlayMusic(int clipIndex)
         {
             if (clipIndex < musicClips.Length)
@@ -88,38 +92,65 @@ namespace Player
             {
                 chair = chairSelected;
                 chairSelected.gameObject.SetActive(false);
-                Debug.Log("Sit " + chair);
             }
         }
         private void OnTriggerStay2D(Collider2D collision)
         {
-            if (collision.tag != "Grid")
+            switch (collision.tag)
             {
-                canBePicked = true;
-                pickedObj = collision.gameObject;
+                case "Chair":
+                    chairSelected = collision.gameObject;
+                    App._app.windows.ShowClickE();
+                    break;
+                case "Cool":
+                    coolSelected = collision.gameObject;
+                    App._app.windows.ShowClickE();
+                    break;
+                case "Human":
+                    humanSelected = collision.gameObject;
+                    App._app.windows.ShowClickE();
+                    break;
+                case "Interaction":
+                    interactionSelected = collision.gameObject;
+                    App._app.windows.ShowClickE();
+                    break;
+                default:
+                    return;
             }
-            if (collision.tag == "Chair")
-            {
-                chairSelected = collision.gameObject;
-            }
-            if (collision.tag == "Cool")
-            {
-                coolSelected = collision.gameObject;
-            }
+            //if (collision.tag != "Grid")
+            //{
+            //    canBePicked = true;
+            //    pickedObj = collision.gameObject;
+            //}
         }
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (collision.tag == "Cool")
+            switch (collision.tag)
             {
-                coolSelected = null;
+                case "Chair":
+                    chairSelected = null;
+                    break;
+                case "Cool":
+                    coolSelected = null;
+                    break;
+                case "Human":
+                    humanSelected = null;
+                    break;
+                 case "Interaction":
+                    interactionSelected = null;
+                    break;
+                default:
+                    break;
             }
-            if (collision.tag == "Chair")
+            if (
+                chairSelected == null 
+                && coolSelected == null
+                && humanSelected == null
+                && interactionSelected == null
+                )
             {
-                canBePicked = false;
-                pickedObj = null;
-                chairSelected = null;
+                App._app.windows.UnShowClickE();
             }
-            
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {

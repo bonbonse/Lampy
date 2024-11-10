@@ -1,6 +1,6 @@
 namespace Quest
 {
-    public class Quest
+    public class Quest 
     {
         public string name;
         public string description;
